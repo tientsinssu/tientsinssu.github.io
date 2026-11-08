@@ -1,0 +1,22 @@
+/* Dark mode for XMin */
+:root {
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+  --link-color: #bb86fc;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+a {
+  color: var(--link-color);
+}
+
+header, footer {
+  background-color: #1e1e1e;
+}
+
+
+

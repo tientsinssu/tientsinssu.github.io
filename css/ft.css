@@ -1,0 +1,452 @@
+/* Financial Times-style overrides: loaded after the theme's style.css / fonts.css / dark.css */
+
+:root {
+  color-scheme: light;
+  --ft-bg: #FFF1E5;
+  --ft-text: #33302E;
+  --ft-muted: #66605C;
+  --ft-card: #F4E8DD;
+  --ft-rule: #CCC1B7;
+  --ft-heavy: #33302E;       /* heavy rule above h2 */
+  --ft-accent: #990F3D;
+  --ft-link: #0D7680;
+  --ft-code-key: #990F3D;    /* code keywords */
+
+  --ft-serif-display: "Newsreader", "Songti SC", "STSong", "SimSun", serif;
+  --ft-serif: "Newsreader", Georgia, "Songti SC", "STSong", "SimSun", serif;
+  --ft-sans: "Public Sans", -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+}
+
+html.dark {
+  color-scheme: dark;
+  --ft-bg: #262A33;
+  --ft-text: #F2DFCE;
+  --ft-muted: #B8AA9D;
+  --ft-card: #30353F;
+  --ft-rule: #4D525C;
+  --ft-heavy: #F2DFCE;
+  --ft-accent: #E86C94;
+  --ft-link: #5CBCC6;
+  --ft-code-key: #F08DAD;    /* accent brightened a bit to keep contrast ≥ 4.5 on the card background */
+}
+
+/* ---------- Base ---------- */
+html, html body {
+  background-color: var(--ft-bg);
+  color: var(--ft-text);
+}
+body {
+  font-family: var(--ft-serif);
+  font-size: 19px;
+  line-height: 1.6;
+  max-width: 720px;
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: var(--ft-accent); color: var(--ft-bg); }
+
+/* ---------- Links ---------- */
+html body a {
+  color: var(--ft-link);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+html body a:hover { color: var(--ft-accent); }
+
+/* ---------- Navigation ---------- */
+/* Theme toggle: the original round button + moon/sun + rotate on hover, colored with theme variables */
+.menu li.theme-item { margin-left: .2em; vertical-align: middle; }
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ft-text);
+  font-size: .95rem;
+  cursor: pointer;
+  transition: transform .3s ease, color .3s ease, background-color .3s ease;
+}
+html.dark .theme-toggle { background: var(--ft-card); }
+.theme-toggle:hover { transform: rotate(15deg); color: var(--ft-accent); }
+.theme-toggle:focus-visible { outline: 2px solid var(--ft-accent); outline-offset: 2px; }
+.theme-toggle .icon-sun,
+html.dark .theme-toggle .icon-moon { display: none; }
+html.dark .theme-toggle .icon-sun { display: inline-block; }
+.menu { font-family: var(--ft-sans); }
+.menu li { margin: 0 .4em; }
+html body .menu a {
+  color: var(--ft-text);
+  text-decoration: none;
+  font-size: .8rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  border-radius: 0;
+}
+html body .menu a:hover {
+  color: var(--ft-accent);
+  background: none !important;
+  box-shadow: inset 0 -2px 0 var(--ft-accent);
+}
+
+/* ---------- Rules ---------- */
+hr {
+  border: 0;
+  border-top: 1px solid var(--ft-rule);
+  color: var(--ft-rule);
+}
+
+/* ---------- Headings ---------- */
+h1, h2, h3, h4, h5, h6, .title {
+  font-family: var(--ft-serif-display);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--ft-text);
+}
+h1 { font-size: 2.3rem; letter-spacing: -.01em; }
+.article-meta h1 { margin-bottom: .3em; }
+.article-meta .title { font-size: inherit; }
+main h2 {
+  border-top: 3px solid var(--ft-heavy);
+  padding-top: .5em;
+  margin-top: 1.8em;
+  font-size: 1.5rem;
+}
+
+/* ---------- UI text: author / date / tags / footer ---------- */
+.author, .date, .terms, footer {
+  font-family: var(--ft-sans);
+  color: var(--ft-muted);
+}
+.article-meta h2.author,
+.article-meta h2.date {
+  font-size: .85rem;
+  font-weight: 400;
+  margin: .2em 0;
+  letter-spacing: .02em;
+}
+.article-meta h2.author { color: var(--ft-accent); font-weight: 600; text-transform: uppercase; }
+footer { font-size: .8rem; margin-top: 3em; }
+html body footer a { color: var(--ft-muted); }
+
+/* Post list (the theme's list.html outputs bare <li>) */
+body > li {
+  list-style: none;
+  padding: .6em 0;
+  border-bottom: 1px solid var(--ft-rule);
+}
+body > li .date {
+  display: inline-block;
+  min-width: 7em;
+  font-size: .8rem;
+}
+body > li a {
+  font-family: var(--ft-serif-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+html body > li a { color: var(--ft-text); text-decoration: none; }
+html body > li a:hover { color: var(--ft-accent); }
+
+/* ---------- Card-like elements ---------- */
+code { background: var(--ft-card); padding: .1em .3em; }
+pre { background: var(--ft-card); }
+pre code { padding: 0; }
+blockquote {
+  background: var(--ft-card);
+  border-left: 4px solid var(--ft-accent);
+  font-style: italic;
+}
+table {
+  font-family: var(--ft-sans);
+  font-size: .9rem;
+  border-top: 2px solid var(--ft-heavy);
+  border-bottom: 1px solid var(--ft-rule);
+}
+table thead th { border-bottom: 1px solid var(--ft-rule); }
+thead, tfoot, tr:nth-child(even) { background: var(--ft-card); }
+
+/* =========================================================
+   Categories + tags
+   ========================================================= */
+[hidden] { display: none !important; }  /* keep display:flex etc. from overriding the hidden attribute */
+
+/* Page heading row: title + small count + action on the right */
+.page-head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: .4em .9em;
+  margin: 1.2em 0 1em;
+}
+.page-head .page-title { margin: 0; }
+.page-sub, .sort-toggle {
+  font-family: var(--ft-sans);
+  font-size: .85rem;
+  color: var(--ft-muted);
+}
+.sort-toggle {
+  margin-left: auto;
+  background: none;
+  border: 0;
+  padding: .2em 0;
+  cursor: pointer;
+}
+.sort-toggle:hover { color: var(--ft-accent); }
+
+/* Chips shared by tags and category buttons: thin border, small radius, no fill */
+.tag-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .55em;
+}
+.tag-list li { margin: 0; }
+html body a.tag-chip,
+.chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: .5em;
+  padding: .3em .75em;
+  border: 1px solid var(--ft-rule);
+  border-radius: 4px;
+  background: none;
+  color: var(--ft-text);
+  font-family: var(--ft-sans);
+  font-size: .9rem;
+  line-height: 1.4;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color .15s ease, color .15s ease;
+}
+html body a.tag-chip:hover,
+.chip:hover { border-color: var(--ft-text); color: var(--ft-text); }
+.tag-count { font-size: .8em; color: var(--ft-muted); }
+.chip.is-active { border-color: var(--ft-accent); color: var(--ft-accent); }
+
+.cat-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5em;
+  margin: .4em 0 1.4em;
+}
+
+/* Post list grouped by year */
+.year {
+  margin: 1.6em 0 .3em;
+  font-family: var(--ft-sans);
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--ft-muted);
+}
+.year-group:first-child .year { margin-top: .4em; }
+.posts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--ft-rule);
+}
+.post-row {
+  display: flex;
+  align-items: baseline;
+  gap: 1em;
+  padding: .55em 0;
+  border-bottom: 1px solid var(--ft-rule);
+}
+.post-date {
+  flex: none;
+  font-family: var(--ft-sans);
+  font-size: .85rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--ft-muted);
+}
+html body a.post-title {
+  flex: 1;
+  color: var(--ft-text);
+  font-family: var(--ft-serif-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+html body a.post-title:hover { color: var(--ft-accent); }
+.cat-badge {
+  flex: none;
+  padding: 0 .45em;
+  border: 1px solid var(--ft-rule);
+  border-radius: 3px;
+  font-family: var(--ft-sans);
+  font-size: .72rem;
+  color: var(--ft-muted);
+}
+.empty { font-family: var(--ft-sans); color: var(--ft-muted); }
+
+/* Post page: category · date · #tags */
+.post-meta {
+  margin: .4em 0 0;
+  font-family: var(--ft-sans);
+  font-size: .85rem;
+  color: var(--ft-muted);
+}
+.post-meta .sep { margin: 0 .45em; }
+html body .post-meta a { color: var(--ft-muted); text-decoration: none; }
+html body .post-meta a:hover { color: var(--ft-accent); }
+html body .post-meta a.meta-cat { color: var(--ft-accent); font-weight: 600; }
+.meta-tag + .meta-tag { margin-left: .6em; }
+
+/* Bottom of a tag page: related tags */
+.related { margin-top: 2.5em; }
+.related-title {
+  border-top: 3px solid var(--ft-heavy);
+  padding-top: .5em;
+  font-size: 1.2rem;
+}
+
+/* =========================================================
+   Library (/library/): quotes + reading list; quote styles are also used on tag pages
+   ========================================================= */
+.library-section { margin-top: 2.4em; }
+.library-section > .page-head {
+  border-top: 3px solid var(--ft-heavy);
+  padding-top: .5em;
+  margin: 0 0 1.4em;
+}
+.section-title { margin: 0; font-size: 1.5rem; }
+.term-quotes { margin-top: 2.5em; }
+.term-quotes .related-title { margin-bottom: 1.2em; }
+
+/* Quote: serif text + thin left rule, small source line below (overrides the site blockquote's fill/heavy rule/italics) */
+.quote {
+  margin: 0 0 2em;
+  padding: .1em 0 .1em 1.1em;
+  border-left: 1px solid var(--ft-muted);
+}
+html body .quote blockquote {
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  font-family: var(--ft-serif);
+  font-style: normal;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--ft-text);
+}
+.quote-source {
+  margin-top: .55em;
+  font-family: var(--ft-sans);
+  font-size: .8rem;
+  color: var(--ft-muted);
+}
+html body .quote-source a { color: var(--ft-muted); text-decoration: none; }
+html body .quote-source a:hover { color: var(--ft-accent); }
+
+/* Reading list: group headings reuse .year; each row is month · title · author · notes link */
+.shelf:first-of-type .year { margin-top: .4em; }
+.shelf-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--ft-rule);
+}
+.shelf-row {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: .2em 1em;
+  padding: .55em 0;
+  border-bottom: 1px solid var(--ft-rule);
+  scroll-margin-top: 1em;
+}
+.shelf-row:target { box-shadow: inset 3px 0 0 var(--ft-accent); padding-left: .7em; }
+.shelf-when {
+  flex: none;
+  min-width: 4.8em;
+  font-family: var(--ft-sans);
+  font-size: .85rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--ft-muted);
+}
+.shelf-title {
+  font-family: var(--ft-serif-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.shelf-author, .shelf-note {
+  font-family: var(--ft-sans);
+  font-size: .85rem;
+  color: var(--ft-muted);
+}
+html body a.shelf-note { margin-left: auto; text-decoration: none; }
+
+/* =========================================================
+   Tools (/tools/): icon + name + one-line description
+   ========================================================= */
+.tool-list {
+  list-style: none;
+  margin: 1.4em 0 0;
+  padding: 0;
+  border-top: 1px solid var(--ft-rule);
+}
+.tool-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1em;
+  padding: .9em 0;
+  border-bottom: 1px solid var(--ft-rule);
+}
+.tool-icon {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--ft-rule);
+  border-radius: 10px;
+}
+.tool-body { min-width: 0; }
+html body a.tool-name {
+  color: var(--ft-text);
+  font-family: var(--ft-serif-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+html body a.tool-name:hover { color: var(--ft-accent); }
+.tool-desc {
+  margin: .2em 0 0;
+  font-family: var(--ft-sans);
+  font-size: .85rem;
+  line-height: 1.55;
+  color: var(--ft-muted);
+}
+
+/* =========================================================
+   Code highlighting (Hugo/Chroma classes), all colors from theme variables
+   ========================================================= */
+.highlight pre, pre.chroma { background: var(--ft-card); color: var(--ft-text); }
+.chroma .k, .chroma .kc, .chroma .kd, .chroma .kn, .chroma .kp, .chroma .kr, .chroma .kt,
+.chroma .ow, .chroma .nt { color: var(--ft-code-key); }
+.chroma .s, .chroma .s1, .chroma .s2, .chroma .sa, .chroma .sb, .chroma .sc, .chroma .sd,
+.chroma .se, .chroma .sh, .chroma .si, .chroma .sr, .chroma .ss, .chroma .sx,
+.chroma .m, .chroma .mb, .chroma .mf, .chroma .mh, .chroma .mi, .chroma .mo, .chroma .il { color: var(--ft-link); }
+.chroma .c, .chroma .c1, .chroma .ch, .chroma .cm, .chroma .cp, .chroma .cpf, .chroma .cs { color: var(--ft-muted); font-style: italic; }
+.chroma .nf, .chroma .fm, .chroma .nc, .chroma .nd, .chroma .nb, .chroma .bp { color: var(--ft-text); font-weight: 600; }
+.chroma .err { color: var(--ft-code-key); }
+.chroma .hl { background: var(--ft-rule); display: block; }
+.chroma .ln, .chroma .lnt { color: var(--ft-muted); margin-right: .8em; }
+
+/* =========================================================
+   Theme-switch transition: JS adds .theme-anim only while toggling
+   ========================================================= */
+html.theme-anim,
+html.theme-anim *,
+html.theme-anim *::before,
+html.theme-anim *::after {
+  transition: background-color .2s ease, color .2s ease, border-color .2s ease,
+              outline-color .2s ease, box-shadow .2s ease, fill .2s ease, stroke .2s ease !important;
+}
